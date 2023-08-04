@@ -1,0 +1,24 @@
+.containersItemBox{
+    background-color: white;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 10px;
+    
+}
+.b{
+    text-align: center;
+    align-items: center;
+    font-size: larger;
+}
+.f{
+    background-color: rgb(107, 107, 107);
+}
+.bodyContect{
+    margin: 15px;
+    padding: 10px;
+    border-top: 1px solid rgb(124, 124, 124);
+}
+.defaulttext{
+    font-size: medium;
+    font-weight: 700;
+}

@@ -1,0 +1,17 @@
+.container{
+    float: right;
+    width: 100%;
+    transition: width 0.5s ease; 
+    box-sizing: border-box;
+    padding: 15px;
+    padding-top: 30px;
+
+}
+.container.menushow{
+    width: 85%;
+    float: right;
+    overflow: hidden;
+}
+.midBox{
+    padding: 10px;
+}

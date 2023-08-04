@@ -1,0 +1,56 @@
+.left{
+    float: left;
+    height: 100%;
+    width: 0;
+    position: fixed;
+    box-sizing: border-box;
+    overflow: hidden;
+    background-color: white;
+    transition: width 0.5s ease; 
+    padding-top: 60px;
+}
+.img{
+    max-width: 20%;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.d{
+    font-size: large;
+    position: absolute;
+    margin-top: 1em;
+    padding-left: 10px;
+    word-wrap: break-word;
+    -webkit-text-size-adjust: none;
+}
+.menutop{
+    width: 15%;
+    position: absolute;
+    z-index: 1;
+    padding-bottom: 4px;
+    transition: max-height 0.5s ease;
+}
+.borderBu{
+    border-top: 1px solid rgb(167, 167, 167);
+}
+.white{
+    color: white;
+}
+.black{
+    color: rgba(0,0,0,0);
+    transition: color 0.3s ease;
+    
+}
+.left.open {
+    /* สไตล์ของเมนูเมื่อเปิดอยู่ */
+    /* ตัวอย่าง */
+    width:15%; /* กำหนดความกว้างของเมนูเมื่อเปิด */
+}
+.menu{
+    padding: 10px;
+    font-size: medium;
+
+}
+.black.open{
+    color: black;
+}
