@@ -2,33 +2,35 @@
     float: left;
     height: 100%;
     width: 0;
+    display: flexbox;
     position: fixed;
     box-sizing: border-box;
     overflow: hidden;
     background-color: white;
     transition: width 0.5s ease; 
     padding-top: 60px;
+    
 }
 .img{
     max-width: 20%;
-    margin-top: 10px;
-    margin-left: 10px;
     cursor: pointer;
+    display: flexbox;
 }
 .d{
     font-size: large;
-    position: absolute;
-    margin-top: 1em;
-    padding-left: 10px;
     word-wrap: break-word;
+    justify-items: center;
     -webkit-text-size-adjust: none;
 }
 .menutop{
     width: 15%;
-    position: absolute;
+    display: flex;
+    position: fixed;
     z-index: 1;
+    align-items: center;
+    text-align: right;
     padding-bottom: 4px;
-    transition: max-height 0.5s ease;
+    transition: background-color 0.5s ease;
 }
 .borderBu{
     border-top: 1px solid rgb(167, 167, 167);
@@ -45,8 +47,9 @@
     /* สไตล์ของเมนูเมื่อเปิดอยู่ */
     /* ตัวอย่าง */
     width:15%; /* กำหนดความกว้างของเมนูเมื่อเปิด */
+    border-right: 2px solid #969696;
 }
-.menu{
+.menu-web{
     padding: 10px;
     font-size: medium;
 

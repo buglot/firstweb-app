@@ -1,6 +1,6 @@
 import "./menuLeft.css";
-import img0 from '../asserts/menu3.png';
-import img1 from '../asserts/menu.png';
+import img0 from '../assets/menu3.png';
+import img1 from '../assets/menu.png';
 
 function MenuLeft(props) {
   
@@ -9,7 +9,7 @@ function MenuLeft(props) {
   return (
     
     <div>
-      <div className={smenuClick ? "menutop": "menutop"}>
+      <div className={"menutop"}>
         
         <img className="img" src={smenuClick ? img0:img1} alt="Menu"
           onClick={
@@ -18,10 +18,10 @@ function MenuLeft(props) {
             }
           } />
         
-        <f className={`d black ${smenuClick ? "":"open"}`}><b>{props.title}</b></f>
+        <a className={`d black ${smenuClick ? "":"open"}`}><b>{props.title}</b></a>
       </div>
       <div className={`left ${smenuClick ? '' : 'open'}`}>
-          <div className="menu borderBu">
+          <div className="menu-web borderBu">
             asdasd
           </div>
       </div>

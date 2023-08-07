@@ -12,6 +12,36 @@ function Body_web_P(props){
                 sdfd`}/>
                 
             </div>
+            <div className="midBox">
+                <ItemProt title="แนะนำตัว" text={`sad
+                asdasa
+                sdfd`}/>
+                
+            </div>
+            <div className="midBox">
+                <ItemProt title="แนะนำตัว" text={`sad
+                asdasa
+                sdfd`}/>
+                
+            </div>
+            <div className="midBox">
+                <ItemProt title="แนะนำตัว" text={`sad
+                asdasa
+                sdfd`}/>
+                
+            </div>
+            <div className="midBox">
+                <ItemProt title="แนะนำตัว" text={`sad
+                asdasa
+                sdfd`}/>
+                
+            </div>
+            <div className="midBox">
+                <ItemProt title="แนะนำตัว" text={`sad
+                asdasa
+                sdfd`}/>
+                
+            </div>
         </div>
     );
 }
