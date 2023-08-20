@@ -1,0 +1,18 @@
+.body_webMain{
+    float: right;
+    box-sizing: border-box;
+    width: 80%;
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 20px;
+    display: flex;
+}
+.Items{
+    flex: 1;
+    background-color: gainsboro;
+    border-radius: 20px;
+    width: 50px;
+    padding: 15px;
+    overflow-x: auto;
+}
