@@ -1,14 +1,25 @@
-.Menu_web{
-    background-color: black;
-    width: 20%;
-    height: 100%;
-    float:  left;
+.Menu_web {
+    background: #04061F;
+    width: 40%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: -40%;
     box-sizing: border-box;
-    position: absolute;
-    padding: 10px;
-    padding-left: 20px;
-    display: flex;
+    transition: left 0.5s ease;
+    padding: 49px;
+    padding-top: 90px;
+    z-index: 0;
 }
-h2.menu-web_fontwhite{
+
+.Menu_web.open {
+    left: 0; /* เลื่อนเมนูเข้ามาแสดง */
+}
+
+.Menu_web.close {
+    left: -40%; /* เลื่อนเมนูออกจากหน้าจอ */
+ /* ลบการใส่ padding เมื่อปิดเมนู */
+} 
+h2.menu-web_fontwhite {
     color: white;
 }

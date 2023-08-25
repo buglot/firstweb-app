@@ -1,17 +1,31 @@
 
 import './App.css';
-import Menu_web from './web_compronemt/menu_web';
-import Body_Web from './web_compronemt/body_web';
-import LoginPage from './web_compronemt/login_web';
+import Webbody from './web_component/webbody';
+import LoginPage from './web_component/login_component/login_web';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState ,useEffect} from 'react';
+import { useNavigate } from 'react-router-dom';
 import CheckLogin from './CheckLogin';
 function App() {
+  console.log(document.URL.split("http://192.168.1.45:3000/"))
+  useEffect(()=>{
+    fetch(`http://192.168.1.45:1235/${document.URL.split("http://192.168.1.45:3000/")[1]}`)
+  .then(response => response.json())
+  .then(data => {
+  })
+  .catch(error => {
+    console.error('Error:', error);
+    window.location.href = "/"
+  });},[])
+  
   return (
     <Router>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        
         <Route path="/" element={<CheckLogin />} />
-        {/* อื่น ๆ ... */}
+
+        <Route path="/web/app" element={<Webbody  />} />
+        <Route path="/web/login" element={<LoginPage  />} />
       </Routes>
     </Router>
   );
