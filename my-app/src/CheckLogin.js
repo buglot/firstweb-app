@@ -49,9 +49,9 @@ function CheckLogin(){
   }
   useEffect(() => {
     const isLoggedIn = Cookies.get('isLogin');
+    console.log(isLoggedIn);
     
-    
-    if (!isLoggedIn) {
+    if (isLoggedIn!=="true") {
       
       navigate(`${d}/login`);
     }else{

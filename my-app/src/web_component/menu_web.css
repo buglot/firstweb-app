@@ -1,15 +1,17 @@
 .Menu_web {
     background: #04061F;
     width: 40%;
-    height: 100vh;
+    height: 100%;
     position: fixed;
     top: 0;
     left: -40%;
     box-sizing: border-box;
     transition: left 0.5s ease;
     padding: 49px;
-    padding-top: 90px;
+    padding-top: 130px;
     z-index: 0;
+    overflow-x: auto;
+
 }
 
 .Menu_web.open {
