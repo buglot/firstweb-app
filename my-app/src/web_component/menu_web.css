@@ -11,17 +11,39 @@
     padding-top: 130px;
     z-index: 0;
     overflow-x: auto;
-
+    flex-direction: column;
+    align-items: flex-start;
+    display: flex;
+    font-family: peter;
 }
 
 .Menu_web.open {
-    left: 0; /* เลื่อนเมนูเข้ามาแสดง */
+    left: 0;
+    /* เลื่อนเมนูเข้ามาแสดง */
 }
 
 .Menu_web.close {
-    left: -40%; /* เลื่อนเมนูออกจากหน้าจอ */
- /* ลบการใส่ padding เมื่อปิดเมนู */
-} 
+    left: -40%;
+    /* เลื่อนเมนูออกจากหน้าจอ */
+    /* ลบการใส่ padding เมื่อปิดเมนู */
+}
+
 h2.menu-web_fontwhite {
     color: white;
+}
+
+.d {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    flex: 1 0 0;
+    width: 100%;
+}
+
+.lp {
+    width: 36px;
+    height: 106px;
+    flex-shrink: 0;
+    bottom: 0;
+    background: #F00;
 }

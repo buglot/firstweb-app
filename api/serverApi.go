@@ -58,9 +58,25 @@ func registor(c *gin.Context) {
 		return
 	}
 	defer db.Close()
-	query := "insert accounts (email,password,mykeyAccountadd) value (? , ? , ?)"
-	row := db.QueryRow(query, email, password, genKey())
+	query1 := "SELECT * FROM accounts WHERE email = ?"
+	getRow := db.QueryRow(query1, email)
+	var id int
+	var xxx string
+	var xxx1 string
+	var xxx2 string
+	var xxx3 string
+	getRow.Scan(&id, &xxx, &xxx1, &xxx2, &xxx3)
+	println(xxx, email)
+	if xxx == email {
+		c.JSON(409, gin.H{"error": "This email has been registered already!"})
+		return
+	}
+	query := "INSERT INTO accounts (email, password, mykeyAccountadd,premistion) VALUES (?, ?, ?,?)"
+	key := genKey() // สร้างคีย์ที่น่าสนใจ
+	ad := "user"
+	row := db.QueryRow(query, email, password, key, ad)
 	if row.Err() != nil {
+
 		c.JSON(401, gin.H{"error": "has problem server!!!!"})
 		return
 	}
@@ -124,7 +140,8 @@ func loginHandler(c *gin.Context) {
 	var xxx string
 	var xxx1 string
 	var xxx2 string
-	err = row.Scan(&id, &xxx, &xxx1, &xxx2)
+	var xxx3 string
+	err = row.Scan(&id, &xxx, &xxx1, &xxx2, &xxx3)
 	if err != nil {
 		c.JSON(401, gin.H{"error": "Invalid email or password. Please try again."})
 		return

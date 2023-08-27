@@ -9,7 +9,7 @@ function Webbody(){
     return(
         <div className="webbody-main-contrainner" style={{background: "#160D0D"}}>
             <Menu_web setClick={setClick} menuClick={menuClick} selectpage={page} setPage={setPageSelect}/>
-            <Body_Web menuClick={menuClick}/>
+            <Body_Web menuClick={menuClick} page={page} Pageset={setPageSelect}/>
         </div>
     );
 }

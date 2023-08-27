@@ -1,0 +1,62 @@
+.item-add-key-contrainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 61px 153px;
+    gap: 17px;
+    border-radius: 35px;
+    border: 1px solid #000;
+    background: #211414;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.item-add-key-contrainer a {
+    color: #FFF;
+    font-family: peter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.item-add-key-contrainer button {
+    display: flex;
+    width: 150px;
+    height: 65px;
+    padding: 32px 72px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #57A4FF;
+    color: #FFF;
+    text-align: center;
+    font-family: peter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    cursor: pointer;
+}
+
+.item-add-key-contrainer button:hover {
+    background: #8EC2FF;
+}
+
+.item-add-key-contrainer button:active {
+    background: #2E8DFF;
+}
+
+.item-add-key-contrainer input {
+    display: flex;
+    padding: 21px 16px;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    border-radius: 15px;
+    background: #D9D9D9;
+    font-family: peter;
+    font-size: 20px;
+}
