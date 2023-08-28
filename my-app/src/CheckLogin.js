@@ -1,64 +1,52 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
-function CheckLogin(){
+function CheckLogin() {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState("");
   const [webUse, setWebUse] = useState(0);
   const formData = new URLSearchParams();
-  const [errorMessage,setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
-    const apiUrl = 'http://192.168.1.45:1235/os'; // แทนที่ localhost:8080/full เป็น URL ของ API ที่คุณใช้
+    const apiUrl = 'http://192.168.189.194:1235/os'; // แทนที่ localhost:8080/full เป็น URL ของ API ที่คุณใช้
 
     fetch(apiUrl)
-      .then((response) => response.json())
-      .then((jsonData) => {
-        const valueFromJson = jsonData["os"];
-        setData(valueFromJson);
+      .then(response => response.json())
+      .then(data => {
+        let datas = data.os;
+        let s = 0;
+        switch (datas) {
+          case "Windows":
+          case "Linux":
+            s = 1;
+            break;
+          case "Android":
+          case "Ios":
+            s = 2;
+            break;
+          default:
+            s = 1;
+            break;
+        }
+        let d;
+        if (s == 1) {
+          d = 'web'
+        } else {
+          d = 'm'
+        }
+        const isLoggedIn = Cookies.get('isLogin');
+        console.log(isLoggedIn);
+
+        if (isLoggedIn !== "true") {
+          navigate(`${d}/login`);
+        } else {
+          const linkprofile = Cookies.get('linkprofile');
+          navigate(`${d}/app?m=${linkprofile}`);
+        }
       })
       .catch((error) => console.error('Error fetching data:', error.message));
-  }, [navigate]);
+  }, [navigate, setData]);
 
-  const web_f = (data) => {
-    switch (data) {
-      case "Windows":
-      case "Linux":
-        if (webUse !== 1) {
-          setWebUse(1);
-        }
-        break;
-      case "Android":
-      case "Ios":
-        if (webUse !== 2) {
-          setWebUse(2);
-        }
-        break;
-      default:
-        if (webUse !== 1) {
-          setWebUse(1);
-        }
-        break;
-    }
-  };
-  web_f(data);
-  let d ;
-  if (webUse == 1){
-    d='web'
-  }else{
-    d='m'
-  }
-  useEffect(() => {
-    const isLoggedIn = Cookies.get('isLogin');
-    console.log(isLoggedIn);
-    
-    if (isLoggedIn!=="true") {
-      
-      navigate(`${d}/login`);
-    }else{
-      const linkprofile = Cookies.get('linkprofile');
-      navigate(`${d}/app?m=${linkprofile}`);
-    }
-  }, [navigate]);
 
   return (
     <div>

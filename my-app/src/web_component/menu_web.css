@@ -1,20 +1,21 @@
 .Menu_web {
     background: #04061F;
-    width: 40%;
+    width: 20%;
     height: 100%;
     position: fixed;
     top: 0;
-    left: -40%;
+    left: -20%;
     box-sizing: border-box;
     transition: left 0.5s ease;
-    padding: 49px;
     padding-top: 130px;
     z-index: 0;
-    overflow-x: auto;
-    flex-direction: column;
-    align-items: flex-start;
+    overflow-x:auto;
     display: flex;
+    flex-direction: column;
+    align-items:normal;
+    
     font-family: peter;
+
 }
 
 .Menu_web.open {
@@ -23,7 +24,7 @@
 }
 
 .Menu_web.close {
-    left: -40%;
+    left: -20%;
     /* เลื่อนเมนูออกจากหน้าจอ */
     /* ลบการใส่ padding เมื่อปิดเมนู */
 }

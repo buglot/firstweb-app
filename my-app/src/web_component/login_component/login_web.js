@@ -17,7 +17,7 @@ function LoginPage(props) {
     formData.append('password', password);
   
     // ส่ง HTTP POST request
-    fetch('http://192.168.1.45:1235/login', {
+    fetch('http://192.168.189.194:1235/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -55,7 +55,7 @@ function LoginPage(props) {
       formData.append('password', password);
   
     // ส่ง HTTP POST request
-    fetch('http://192.168.1.45:1235/registor', {
+    fetch('http://192.168.189.194:1235/registor', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

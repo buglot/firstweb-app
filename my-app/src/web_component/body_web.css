@@ -2,14 +2,15 @@
     box-sizing: border-box;
     overflow-y: auto;
     padding: 20px;
-    width: 60%;
+    width: 80%;
     height: 100%;
     background: #160D0D;
     right: 0;
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: normal;
+    
     gap: 30px;
     transition:  width 0.5s ease;
 }

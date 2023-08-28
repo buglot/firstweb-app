@@ -6,10 +6,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useState ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import CheckLogin from './CheckLogin';
+import M_body from './m_component/mbody';
 function App() {
-  console.log(document.URL.split("http://192.168.1.45:3000/"))
   useEffect(()=>{
-    fetch(`http://192.168.1.45:1235/${document.URL.split("http://192.168.1.45:3000/")[1]}`)
+    fetch(`http://192.168.189.194:1235/${document.URL.split("http://192.168.189.194:3000/")[1]}`)
   .then(response => response.json())
   .then(data => {
   })
@@ -26,6 +26,8 @@ function App() {
 
         <Route path="/web/app" element={<Webbody  />} />
         <Route path="/web/login" element={<LoginPage  />} />
+        <Route path="/m/login" element={<LoginPage  />} />
+        <Route path="/m/app" element={<M_body  />} />
       </Routes>
     </Router>
   );

@@ -18,7 +18,7 @@ function Menu_web(props) {
                 <Button_web_menu name="ประวัติการใช้งาน" setmyID={3} select={page} setSeclect={setpage} />
                 <div className="d">
                     <Button_web_menu name={"name"} setmyID={4} select={page} setSeclect={setpage} />
-                    <div className="lp"></div>
+                    
                 </div>
             </div>
 

@@ -1,6 +1,5 @@
 .button-web-menu-container-q {
     display: flex;
-    width: 60%;
     padding: 31px;
     gap: 20px;
     background: #04061F;
@@ -21,7 +20,7 @@
 
 .button-web-menu-container-a {
     display: flex;
-    width: 60%;
+
     padding: 31px;
     align-items: center;
     gap: 10px;
@@ -32,7 +31,7 @@
 .button-web-menu-container-q a{
     color: #DADADA;
     font-family: peter;
-    font-size: 36px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -40,7 +39,7 @@
 .button-web-menu-container-a a{
     color: #DADADA;
     font-family: peter;
-    font-size: 36px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;

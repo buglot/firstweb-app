@@ -1,6 +1,7 @@
 .item_none_null-main-contrainer {
     display: flex;
-    padding: 61px 153px;
+    padding: 20px;
+    width: 80%;
     flex-direction: column;
     justify-content: center;
     align-items: center;

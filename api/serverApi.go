@@ -15,7 +15,7 @@ import (
 func main() {
 	r := gin.Default()
 	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://192.168.1.45:3000")
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://192.168.189.194:3000")
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		c.Next()
@@ -34,9 +34,11 @@ func main() {
 	r.GET("/web/app", func(ctx *gin.Context) {
 		fmt.Println(ctx.DefaultQuery("m", ""))
 		ctx.JSON(200, gin.H{})
+		fmt.Println(GetOS(ctx.GetHeader("User-Agent")))
 	})
 	r.GET("/m/app", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{})
+		print(GetOS(ctx.GetHeader("User-Agent")))
 	})
 	r.POST("/registor", registor)
 	r.Run(":1235")
@@ -58,14 +60,10 @@ func registor(c *gin.Context) {
 		return
 	}
 	defer db.Close()
-	query1 := "SELECT * FROM accounts WHERE email = ?"
+	query1 := "SELECT email FROM accounts WHERE email = ?"
 	getRow := db.QueryRow(query1, email)
-	var id int
 	var xxx string
-	var xxx1 string
-	var xxx2 string
-	var xxx3 string
-	getRow.Scan(&id, &xxx, &xxx1, &xxx2, &xxx3)
+	getRow.Scan(&xxx)
 	println(xxx, email)
 	if xxx == email {
 		c.JSON(409, gin.H{"error": "This email has been registered already!"})
@@ -122,7 +120,7 @@ func osStatus(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"os": GetOS(c.GetHeader("User-Agent")),
 	})
-	println(GetOS(c.GetHeader("User-Agent")))
+	fmt.Println(GetOS(c.GetHeader("User-Agent")))
 }
 func loginHandler(c *gin.Context) {
 	email := c.PostForm("email")
