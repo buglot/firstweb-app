@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
 import Cookies from 'js-cookie';
+import { url_myAPI } from './default/config';
 function CheckLogin() {
   const navigate = useNavigate();
   const [data, setData] = useState("");
@@ -8,7 +9,7 @@ function CheckLogin() {
   const formData = new URLSearchParams();
   const [errorMessage, setErrorMessage] = useState("");
   useEffect(() => {
-    const apiUrl = 'http://192.168.189.194:1235/os'; // แทนที่ localhost:8080/full เป็น URL ของ API ที่คุณใช้
+    const apiUrl = `${url_myAPI}/os`; // แทนที่ localhost:8080/full เป็น URL ของ API ที่คุณใช้
 
     fetch(apiUrl)
       .then(response => response.json())

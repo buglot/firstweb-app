@@ -1,4 +1,5 @@
 import "./item_none_null.css"
+
 function Item_none(props){
     return(
         <div className="item_none_null-main-contrainer">

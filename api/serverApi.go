@@ -1,21 +1,21 @@
 package main
 
 import (
-	"crypto/rand"
 	"database/sql"
-	"encoding/base64"
 	"fmt"
+	"myApi/database"
+	keyencry "myApi/keyEncry"
+	osswitch "myApi/osSwitch"
 	"net/http"
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
 	r := gin.Default()
 	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://192.168.189.194:3000")
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://192.168.1.45:3000")
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		c.Next()
@@ -24,7 +24,6 @@ func main() {
 	r.POST("/login", loginHandler)
 	r.GET("/os", osStatus)
 	r.GET("/full", osStatusful)
-	r.POST("/f", Pastp)
 	r.GET("/", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{})
 	})
@@ -32,27 +31,130 @@ func main() {
 		ctx.JSON(200, gin.H{})
 	})
 	r.GET("/web/app", func(ctx *gin.Context) {
-		fmt.Println(ctx.DefaultQuery("m", ""))
+		fmt.Println()
 		ctx.JSON(200, gin.H{})
-		fmt.Println(GetOS(ctx.GetHeader("User-Agent")))
+
 	})
 	r.GET("/m/app", func(ctx *gin.Context) {
 		ctx.JSON(200, gin.H{})
-		print(GetOS(ctx.GetHeader("User-Agent")))
+
 	})
 	r.POST("/registor", registor)
+	r.GET("/d", NameAndKey)
+	r.GET("/stateKey", getOnKey)
+	r.POST("/connectKey", ConnectedKey)
+
 	r.Run(":1235")
 
 }
-func genKey() string {
-	keySize := 64
-	key := make([]byte, keySize)
-	rand.Read(key)
-	base64Key := base64.StdEncoding.EncodeToString(key)
-	return base64Key
+func ConnectedKey(c *gin.Context) {
+	db, err := database.GetDB()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Database connection error"})
+		return
+	}
+	defer db.Close()
+	query1 := "select preKey,shareKey,idhostkey from mykey where preKey =? or shareKey =?"
+	keyKey := c.PostForm("key")
+	row := db.QueryRow(query1, keyKey, keyKey)
+	var shareKey sql.NullString
+	var prekey string
+	var idhostkey sql.NullInt16
+	err = row.Scan(&prekey, &shareKey, &idhostkey)
+	if err != nil {
+		fmt.Println(err.Error())
+		c.JSON(500, gin.H{"error": "Invalid Key in server. Please try again."})
+		return
+	}
+	fmt.Println("idhostkey:", idhostkey == sql.NullInt16{})
+	if (idhostkey == sql.NullInt16{}) {
+		c.JSON(500, gin.H{"status": 200})
+		return
+	}
+	if (shareKey != sql.NullString{}) {
+		c.JSON(500, gin.H{"status": 200})
+		return
+	} else {
+		c.JSON(500, gin.H{"error": "Invalid Key in server. Please try again."})
+	}
+
 }
+func getOnKey(c *gin.Context) {
+	db, err := database.GetDB()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Database connection error"})
+		return
+	}
+	defer db.Close()
+	query1 := "select key_idkey,nickname,K.preKey from mykey K ,accounts_has_key where accounts_id=? and K.idkey = key_idkey"
+	id := c.DefaultQuery("id", "")
+	rows, err := db.Query(query1, id)
+	if err != nil {
+		fmt.Println(err.Error())
+		c.JSON(406, gin.H{
+			"data": 0,
+		})
+		return
+	}
+	defer rows.Close()
+
+	dataList := make([]map[string]interface{}, 0) // Use interface{} to handle NULL values
+
+	for rows.Next() {
+		var keyname int
+		var prekey string
+		var nickname sql.NullString // Use sql.NullString to handle NULL strings
+		err := rows.Scan(&keyname, &nickname, &prekey)
+		if err != nil {
+			fmt.Println(err.Error())
+			c.JSON(500, gin.H{"error": "Internal server error"})
+			return
+		}
+
+		// Create a map for the current row's data
+		rowData := map[string]interface{}{
+			"keyname":  keyname,
+			"nickname": nickname.String,
+			"codeKey":  prekey, // Get the actual string value if not NULL
+		}
+
+		dataList = append(dataList, rowData)
+	}
+
+	c.JSON(200, gin.H{
+		"status": 200,
+		"data":   dataList,
+	})
+}
+
+func NameAndKey(c *gin.Context) {
+	db, err := database.GetDB()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Database connection error"})
+		return
+	}
+	defer db.Close()
+	key := c.DefaultQuery("m", "")
+	d := strings.Split(key, "+")
+	fmt.Println("my key :    ", d)
+	query := "select id,email from accounts   where mykeyAccountadd =?"
+	getRow := db.QueryRow(query, key)
+	var email string
+	var id int
+	err = getRow.Scan(&id, &email)
+	if err != nil {
+		c.JSON(401, gin.H{"error": "Invalid link"})
+		return
+	}
+	c.JSON(200, gin.H{
+		"status": 200,
+		"id":     id,
+		"email":  email,
+	})
+}
+
 func registor(c *gin.Context) {
-	db, err := getDB()
+	db, err := database.GetDB()
 	email := c.PostForm("email")
 	password := c.PostForm("password")
 	if err != nil {
@@ -64,13 +166,13 @@ func registor(c *gin.Context) {
 	getRow := db.QueryRow(query1, email)
 	var xxx string
 	getRow.Scan(&xxx)
-	println(xxx, email)
+	fmt.Println(xxx, email)
 	if xxx == email {
 		c.JSON(409, gin.H{"error": "This email has been registered already!"})
 		return
 	}
 	query := "INSERT INTO accounts (email, password, mykeyAccountadd,premistion) VALUES (?, ?, ?,?)"
-	key := genKey() // สร้างคีย์ที่น่าสนใจ
+	key := keyencry.GenKey() // สร้างคีย์ที่น่าสนใจ
 	ad := "user"
 	row := db.QueryRow(query, email, password, key, ad)
 	if row.Err() != nil {
@@ -78,32 +180,8 @@ func registor(c *gin.Context) {
 		c.JSON(401, gin.H{"error": "has problem server!!!!"})
 		return
 	}
-	sd := choice(GetOS(c.GetHeader("User-Agent")))
+	sd := osswitch.ChoiceSwitch(osswitch.GetOS(c.GetHeader("User-Agent")))
 	c.JSON(200, gin.H{"status": 200, "redirect": fmt.Sprintf("/%s/login", sd)})
-}
-func getDB() (*sql.DB, error) {
-	dsn := "root:Yongkeat12+@tcp(localhost:3306)/mydb" // แก้ไขเป็นข้อมูลจริง
-	db, err := sql.Open("mysql", dsn)
-	if err != nil {
-		return nil, err
-	}
-
-	return db, nil
-}
-func GetOS(s string) string {
-	for i := 0; i < 4; i++ {
-		if strings.Contains(s, "Windows NT") {
-			return "Windows"
-		} else if strings.Contains(s, "Android") {
-			return "Android"
-		} else if strings.Contains(s, "iPhone OS") {
-			return "Ios"
-		} else {
-			return "Linux"
-		}
-	}
-
-	return "a"
 }
 
 func osStatusful(c *gin.Context) {
@@ -111,27 +189,22 @@ func osStatusful(c *gin.Context) {
 	c.JSON(http.StatusOK, data)
 }
 
-func Pastp(c *gin.Context) {
-	pc := c.PostForm("email")
-	c.JSON(http.StatusOK, pc)
-}
-
 func osStatus(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"os": GetOS(c.GetHeader("User-Agent")),
+		"os": osswitch.GetOS(c.GetHeader("User-Agent")),
 	})
-	fmt.Println(GetOS(c.GetHeader("User-Agent")))
+	fmt.Println(osswitch.GetOS(c.GetHeader("User-Agent")))
 }
 func loginHandler(c *gin.Context) {
 	email := c.PostForm("email")
 	password := c.PostForm("password")
-	db, err := getDB()
+	db, err := database.GetDB()
 	if err != nil {
 		c.JSON(500, gin.H{"error": "Database connection error"})
 		return
 	}
 	defer db.Close()
-	query := "SELECT  * FROM accounts WHERE email = ? AND password = ?"
+	query := "SELECT * FROM accounts WHERE email = ? AND password = ?"
 	row := db.QueryRow(query, email, password)
 
 	var id int
@@ -144,23 +217,11 @@ func loginHandler(c *gin.Context) {
 		c.JSON(401, gin.H{"error": "Invalid email or password. Please try again."})
 		return
 	}
-	a := GetOS(c.GetHeader("User-Agent"))
-	sd := choice(a)
+	a := osswitch.GetOS(c.GetHeader("User-Agent"))
+	sd := osswitch.ChoiceSwitch(a)
 	c.JSON(200, gin.H{
 		"status":      200,
 		"redirect":    fmt.Sprintf("/%s/app?m=%s", sd, xxx2),
 		"linkprofile": xxx2,
 	})
-}
-func choice(a string) string {
-	var sd string
-	switch a {
-	case "Android":
-	case "Ios":
-		sd = "m"
-		break
-	default:
-		sd = "web"
-	}
-	return sd
 }

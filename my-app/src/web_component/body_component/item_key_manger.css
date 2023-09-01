@@ -1,9 +1,8 @@
 .item-key-manger-container {
     display: flex;
-    width: 100%;
-    padding: 10px 15px;
+    width: 80%;
     flex-direction: column;
-    align-items: flex-start;
+    padding: 30px;
     gap: 10px;
     border-radius: 35px;
     background: #211414;
@@ -31,20 +30,16 @@
 
 .item-key-manger-container .groupButton {
     display: flex;
-    height: 81px;
-    padding: 0px 20px;
-    justify-content: space-between;
-    align-items: center;
-    align-content: center;
-    row-gap: 90px;
-    align-self: stretch;
-    flex-wrap: wrap;
-
+    padding: 15px 0px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;  
 }
 
 .item-key-manger-container a {
     color: #9E9E9E;
-    font-family: peter;
+    font-family: "Tahoma";
     font-size: 20px;
     font-style: normal;
     font-weight: 500;

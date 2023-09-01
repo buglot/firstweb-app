@@ -7,11 +7,13 @@ function Body_Web(propns) {
     let menuPageset = propns.Pageset;
     return (
         <div className={`body_webMain ${menuClick ? "full":""}`}>
+            {propns.id != 0 &&
             <div className="body_webMain-n">
-                {propns.page == 0 && <Page_HOME Click={menuPageset}/>}
-                {propns.page == 1 && <Page_Manger_key/>}
+                {propns.page == 0 && <Page_HOME Click={menuPageset} id={propns.id}/>}
+                {propns.page == 1 && <Page_Manger_key id={propns.id}/>}
             </div>
-
+            }
+            { propns.id == 0 && <div style={{color:"red"}}>404 no response </div>}
         </div>
     );
 }

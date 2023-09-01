@@ -7,7 +7,7 @@ function Menu_web(props) {
     let setpage = props.setPage;
     let setClick = props.setClick;
     let menuClick = props.menuClick;
-
+    let NameProfile = props.name;
     return (
         <div>
             <ICONmenu setClick={setClick} value={menuClick} />
@@ -17,7 +17,7 @@ function Menu_web(props) {
                 <Button_web_menu name="การจัดการแชร์" setmyID={2} select={page} setSeclect={setpage} />
                 <Button_web_menu name="ประวัติการใช้งาน" setmyID={3} select={page} setSeclect={setpage} />
                 <div className="d">
-                    <Button_web_menu name={"name"} setmyID={4} select={page} setSeclect={setpage} />
+                    <Button_web_menu name={NameProfile} setmyID={4} select={page} setSeclect={setpage} />
                     
                 </div>
             </div>

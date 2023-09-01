@@ -7,21 +7,18 @@
     background: #160D0D;
     right: 0;
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: normal;
-    
     gap: 30px;
     transition:  width 0.5s ease;
+    word-wrap: break-word;
 }
 .body_webMain.full{
     width: 100%;
 }
 .body_webMain-n{
     display: flex;
-    align-items: center;
     flex-direction: column;
     gap: 30px;
+    word-wrap: break-word;
 }
 .body_webMain img{
     flex-shrink: 0;

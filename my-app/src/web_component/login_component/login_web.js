@@ -3,6 +3,7 @@ import "./login_web.css"
 import { useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Cookies from 'js-cookie';
+import { url_myAPI } from '../../default/config';
 function LoginPage(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -17,7 +18,7 @@ function LoginPage(props) {
     formData.append('password', password);
   
     // ส่ง HTTP POST request
-    fetch('http://192.168.189.194:1235/login', {
+    fetch(`${url_myAPI}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'
@@ -55,7 +56,7 @@ function LoginPage(props) {
       formData.append('password', password);
   
     // ส่ง HTTP POST request
-    fetch('http://192.168.189.194:1235/registor', {
+    fetch(`${url_myAPI}/registor`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded'

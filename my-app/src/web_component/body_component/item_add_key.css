@@ -3,7 +3,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 61px 153px;
+    width: 80%;
+    padding: 30px;
     gap: 17px;
     border-radius: 35px;
     border: 1px solid #000;
@@ -53,6 +54,7 @@
     display: flex;
     padding: 21px 16px;
     align-items: center;
+    width: 70%;
     gap: 10px;
     flex-shrink: 0;
     border-radius: 15px;

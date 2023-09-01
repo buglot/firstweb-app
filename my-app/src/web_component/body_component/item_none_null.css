@@ -1,7 +1,7 @@
 .item_none_null-main-contrainer {
     display: flex;
     padding: 20px;
-    width: 80%;
+    width: 70%;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -14,17 +14,18 @@
 
 .item_none_null-main-contrainer p {
     color: #DCDCDC;
-    font-family: peter;
+    font-family: Tahoma;
     font-size: 36px;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    text-align: center;
 
 }
 
 .item_none_null-main-contrainer a {
     color: #BABABA;
-    font-family: peter;
+    font-family: Tahoma;
     font-size: 20px;
     font-style: normal;
     font-weight: 500;
