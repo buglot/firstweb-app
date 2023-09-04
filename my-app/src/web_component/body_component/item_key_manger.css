@@ -22,12 +22,10 @@
     justify-content: center;
     align-items: flex-start;
     gap: 10px;
-    align-self: stretch;
     background: #002A30;
     border-radius: 23px;
 
 }
-
 .item-key-manger-container .groupButton {
     display: flex;
     padding: 15px 0px;
@@ -38,14 +36,26 @@
 }
 
 .item-key-manger-container a {
-    color: #9E9E9E;
+
     font-family: "Tahoma";
-    font-size: 20px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
+    color: transparent;
+    
+    text-shadow: 0 0 6px #9E9E9E;
+    cursor: pointer;
 }
-
+.item-key-manger-container a:active {
+    color: #9E9E9E;
+    font-family: "Tahoma";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-shadow: 0 0 0 #9E9E9E;
+}
 .groupButton button {
     display: flex;
     height: 45px;

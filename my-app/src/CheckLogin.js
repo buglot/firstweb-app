@@ -42,7 +42,7 @@ function CheckLogin() {
           navigate(`${d}/login`);
         } else {
           const linkprofile = Cookies.get('linkprofile');
-          navigate(`${d}/app?m=${linkprofile}`);
+          navigate(`${d}/app?m=${linkprofile}&&page=0`);
         }
       })
       .catch((error) => console.error('Error fetching data:', error.message));

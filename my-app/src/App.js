@@ -26,10 +26,10 @@ function App() {
         
         <Route path="/" element={<CheckLogin />} />
 
-        <Route path="/web/app" element={<Webbody  />} />
+        <Route path="/web/app" element={<Webbody />} />
         <Route path="/web/login" element={<LoginPage  />} />
         <Route path="/m/login" element={<LoginPage  />} />
-        <Route path="/m/app" element={<M_body  />} />
+        <Route path="/m/app" element={<M_body/>} />
       </Routes>
     </Router>
   );

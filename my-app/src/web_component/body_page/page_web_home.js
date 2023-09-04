@@ -5,16 +5,7 @@ import { useEffect, useState } from "react";
 import { url_myAPI } from "../../default/config";
 import "./main_home.css";
 function Page_HOME(props){
-    const [key,setkey] = useState({})
-    useEffect(()=>{
-        fetch(url_myAPI+`/stateKey?id=${props.id}`)
-        .then(response => response.json())
-        .then(data =>{
-            if(data.status){
-                setkey(data.data)
-            }
-        })
-    },[setkey])
+    let key = props.datakey;
     return(
         <div className="main_page">
             <img src={pe} />

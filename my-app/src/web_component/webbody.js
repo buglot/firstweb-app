@@ -1,18 +1,33 @@
 import "./webbody.css";
 import Menu_web from "./menu_web";
 import Body_Web from "./body_web";
-import Cookies from 'js-cookie';
 import { useState,useEffect } from "react";
 import { url_myAPI } from "../default/config";
-function Webbody(){
+import { useLocation,useNavigate } from "react-router-dom";
+
+function Webbody(props){
+    const location = useLocation();
+    const history = useNavigate();
+    const queryParams = new URLSearchParams(location.search);
+    const mValue = queryParams.get("m");
+    const pageValue = queryParams.get("page");
     document.title = "SMART KOR";
     const [menuClick , setClick] = useState(false);
     const [page , setPageSelect] = useState(0);
+    if(pageValue===null){
+        if (pageValue!==page){
+            if(page!==0)
+            setPageSelect(0);
+            history(location.pathname+"?m="+mValue+"&&"+"page=0")
+        }
+    }else{
+        if(page!==pageValue)
+        setPageSelect(pageValue);
+    }
     const [name,setName] = useState("");
     const [idaccount,setidaccount] = useState(0);
-    let a =document.URL.split("app?m=")[1];
     useEffect(()=>{
-        fetch(url_myAPI+"/d?m="+a)
+        fetch(url_myAPI+"/d?m="+mValue)
         .then(response => response.json())
         .then(data => {
             if(data.status){
@@ -29,6 +44,7 @@ function Webbody(){
     return(
         <div className="webbody-main-contrainner" style={{background: "#160D0D"}}>
             <Menu_web setClick={setClick} menuClick={menuClick} selectpage={page} setPage={setPageSelect} name={name}/>
+            
             <Body_Web menuClick={menuClick} page={page} Pageset={setPageSelect} id={idaccount} />
         </div>
     );
