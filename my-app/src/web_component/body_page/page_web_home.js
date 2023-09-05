@@ -6,6 +6,7 @@ import { url_myAPI } from "../../default/config";
 import "./main_home.css";
 function Page_HOME(props){
     let key = props.datakey;
+    console.log(key)
     return(
         <div className="main_page">
             <img src={pe} />

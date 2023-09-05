@@ -17,7 +17,7 @@ function Body_Web(props) {
                 setkey(data.data)
             }
         })
-    },[setkey])
+    },[setkey,props.id])
     return (
         <div className={`body_webMain ${menuClick ? "full":""}`}>
             {props.id != 0 &&

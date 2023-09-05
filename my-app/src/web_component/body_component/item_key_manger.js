@@ -22,7 +22,7 @@ function Item_key_manger(props) {
             <a>{codeKey}</a>
             <div className="groupButton">
                 <button className="g" id="g" onClick={() => {setbuttonChoose(1);setErrorMessage("")}}>change name</button>
-                {hostkey === true && <button className="b" id="b" onClick={() => {setbuttonChoose(2);setErrorMessage("")}}>manager</button>}
+                {hostkey === true && <button className="b" id="b" onClick={() => {setbuttonChoose(2);setErrorMessage("");window.location.search=window.location.search.replace("page=1","page=2")}}>manager</button>}
                 <button className="r" id="r"
                     onClick={() => {
                         setErrorMessage("");

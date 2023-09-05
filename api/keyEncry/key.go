@@ -6,10 +6,13 @@ import (
 	"strings"
 )
 
-func GenKey() string {
-	keySize := 64
+func GenKey(size int, c bool) string {
+	keySize := size
 	key := make([]byte, keySize)
 	rand.Read(key)
 	base64Key := base64.StdEncoding.EncodeToString(key)
-	return strings.Replace(base64Key, "+", "*", -1)
+	if c {
+		return strings.Replace(base64Key, "+", "*", -1)
+	}
+	return base64Key
 }
