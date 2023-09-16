@@ -17,8 +17,30 @@ for run `npm start`
 ### golang 
 Enter folder `Api`  
 for run Api `go run .`
+### Arduino 
+---
+### Mobile
+---
 
+## Config for localhost
+### Api 
+you should enter folder `Api/database/mysql.go` 
+In func `GetDB()` 
+> dsn := "username:password@tcp(localhost:portmysql)/databasename"
+simple
+> dsn := "root:123456789@tcp(localhost:3306)/mydb"
 
+### Web
+you should enter folder `my-app/src/default/config.js`
+> const myIPv4 = "192.168.1.45";
+> const url_myAPI ="http://"+myIPv4+":1235";
+> const myIP_REACT = myIPv4+":3000";
+> export { myIPv4, url_myAPI, myIP_REACT };
+
+### Arduino 
+---
+### Mobile
+---
 
 
 
