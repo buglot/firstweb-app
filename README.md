@@ -18,9 +18,9 @@ for run `npm start`
 Enter folder `Api`  
 for run Api `go run .`
 ### Arduino 
----
+asd
 ### Mobile
----
+asd
 
 ## Config for localhost
 ### Api 
