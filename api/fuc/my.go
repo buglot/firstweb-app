@@ -37,7 +37,7 @@ func Disconect_Key(c *gin.Context) {
 func HostKeyshareing(c *gin.Context) {
 	idkey := c.DefaultQuery("idkey", "")
 	selectw := c.DefaultQuery("w", "")
-	keygen := keyencry.GenKey(7, false)
+	keygen := keyencry.GenKey(5, false)
 	if selectw == "1" {
 		query := "UPDATE mykey SET shareKey = ? WHERE idkey= ?"
 		row := Db.QueryRow(query, keygen, idkey)
@@ -86,4 +86,19 @@ func Listuser(c *gin.Context) {
 		dataList = append(dataList, rowData)
 	}
 	c.JSON(200, dataList)
+}
+
+func TranferHost(c *gin.Context) {
+	idkey := c.DefaultQuery("idkey", "")
+	idac := c.DefaultQuery("idac", "")
+	query := "UPDATE mykey SET idhostkey = ? WHERE (idkey = ?);"
+	rows, err := Db.Query(query, idac, idkey)
+	if err != nil {
+		c.JSON(406, gin.H{
+			"error": 0,
+		})
+		return
+	}
+	defer rows.Close()
+	c.JSON(200, gin.H{"status": 200, "data": "You did tranfered host success!"})
 }

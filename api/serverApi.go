@@ -24,7 +24,7 @@ func main() {
 	}
 	r := gin.Default()
 	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://192.168.234.241:3000")
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://192.168.1.45:3000")
 		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
 		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
 		c.Next()
@@ -55,6 +55,7 @@ func main() {
 	r.GET("/disconectkey", fuc.Disconect_Key)
 	r.GET("/genKeyshare", fuc.HostKeyshareing)
 	r.GET("/listUserkey", fuc.Listuser)
+	r.GET("/tranferhost", fuc.TranferHost)
 	r.Run(":1235")
 
 }
@@ -89,7 +90,7 @@ func ConnectedKey(c *gin.Context) {
 		c.JSON(200, gin.H{"status": 200})
 		return
 	}
-	if (shareKey != sql.NullString{}) {
+	if (shareKey != sql.NullString{}) && (shareKey.String == keyKey) {
 		var i int16
 		_, err := fmt.Sscanf(id, "%d", &i)
 		if err != nil {
@@ -103,7 +104,7 @@ func ConnectedKey(c *gin.Context) {
 		query3 := "INSERT INTO accounts_has_key (accounts_id, key_idkey) VALUES (?, ?);"
 		row2 := db.QueryRow(query3, id, idkey)
 		if row2.Err() != nil {
-			c.JSON(500, gin.H{"error": "Error in server. Please try again."})
+			c.JSON(500, gin.H{"error": "This key is connected. Please dont put it add"})
 			return
 		}
 		c.JSON(200, gin.H{"status": 200})

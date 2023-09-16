@@ -14,7 +14,7 @@ class Sharelist extends Component{
     componentDidMount() {
         this.fetchData(); // เรียก fetchData เมื่อ component ถูก mount
         this.interval = setInterval(() => {
-          this.fetchData(); // เรียก fetchData ทุก 10 วินาที
+          this.fetchData(); // เรียก fetchData ทุก 1 วินาที
         }, 1000);
       }
     
