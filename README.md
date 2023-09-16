@@ -27,7 +27,9 @@ asd
 you should enter folder `Api/database/mysql.go` 
 In func `GetDB()` 
 > dsn := "username:password@tcp(localhost:portmysql)/databasename"
+
 simple
+
 > dsn := "root:123456789@tcp(localhost:3306)/mydb"
 
 ### Web
