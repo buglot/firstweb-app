@@ -18,9 +18,9 @@ for run `npm start`
 Enter folder `Api`  
 for run Api `go run .`
 ### Arduino 
-asd
+null
 ### Mobile
-asd
+null
 
 ## Config for localhost
 ### Api 
@@ -35,14 +35,17 @@ simple
 ### Web
 you should enter folder `my-app/src/default/config.js`
 > const myIPv4 = "192.168.1.45";
+
 > const url_myAPI ="http://"+myIPv4+":1235";
+
 > const myIP_REACT = myIPv4+":3000";
+
 > export { myIPv4, url_myAPI, myIP_REACT };
 
 ### Arduino 
----
+null
 ### Mobile
----
+null
 
 
 
