@@ -1,1 +1,7 @@
-<h1>asdasd</h1>
+# font-end/mobile + esp32 project 
+## this project use 
+    - react
+    - react native
+    - golang
+    - mysql
+    
