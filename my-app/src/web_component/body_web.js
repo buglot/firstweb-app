@@ -23,10 +23,10 @@ function Body_Web(props) {
         <div className={`body_webMain ${menuClick ? "full":""}`}>
             {props.id != 0 &&
             <div className="body_webMain-n">
-                {props.page == 0 && <Page_HOME Click={menuPageset} id={props.id} datakey={key}/>}
-                {props.page == 1 && <Page_Manger_key id={props.id} datakey={key}/>}
-                {props.page == 2 && <PAGE_SHARE_KEY id={props.id} datakey={key}/>}
-                {props.page == 3 && <Page_STATE id={props.id} datakey={key}/>}
+                {props.page == 0 && <Page_HOME Click={menuPageset} id={props.id} datakey={key} name={props.name}/>}
+                {props.page == 1 && <Page_Manger_key id={props.id} datakey={key} name={props.name}/>}
+                {props.page == 2 && <PAGE_SHARE_KEY id={props.id} datakey={key} name={props.name}/>}
+                {props.page == 3 && <Page_STATE id={props.id} datakey={key} name={props.name}/>}
             </div>
             }
             { props.id == 0 && <div style={{color:"red"}}>404 no response </div>}

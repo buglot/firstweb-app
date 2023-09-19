@@ -8,7 +8,7 @@ export default function ListIntable(props) {
     let index = props.index;
     const skick = () => {
         if (window.confirm(`sure to kick ${email}`)) {
-            fetch(url_myAPI + `/disconectkey?idaccount=${idac}&&idkey=${idkey}`)
+            fetch(url_myAPI + `/disconectkey?idaccount=${idac}&&idkey=${idkey}&h=host&name=${email}`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.status) {
@@ -24,7 +24,7 @@ export default function ListIntable(props) {
         if (window.confirm(`do you tranfer host key?`)) {
             if (window.confirm(`Are you sure? tranfer host key to ${email}`)) {
                 if (window.confirm(`One more time Are you sure? ${email}`)) {
-                    fetch(url_myAPI + `/tranferhost?idac=${idac}&&idkey=${idkey}`)
+                    fetch(url_myAPI + `/tranferhost?idac=${idac}&&idkey=${idkey}&name=${email}`)
                         .then(response => response.json())
                         .then(data => {
                             if (data.status) {

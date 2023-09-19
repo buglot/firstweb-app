@@ -7,6 +7,8 @@ import (
 	"myApi/fuc"
 	keyencry "myApi/keyEncry"
 	osswitch "myApi/osSwitch"
+	reportstate "myApi/reportState"
+	s "myApi/reportState"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -17,7 +19,8 @@ var db *sql.DB
 func main() {
 	var err error
 	db, err = database.GetDB()
-	fuc.Db, err = database.GetDB()
+	fuc.Db = db
+	reportstate.Mysql = db
 	if err != nil {
 		fmt.Println("Error connecting to the database:", err)
 		return
@@ -55,7 +58,9 @@ func main() {
 	r.GET("/disconectkey", fuc.Disconect_Key)
 	r.GET("/genKeyshare", fuc.HostKeyshareing)
 	r.GET("/listUserkey", fuc.Listuser)
+	r.GET("/HistoryKeys", fuc.StateKey)
 	r.GET("/tranferhost", fuc.TranferHost)
+
 	r.Run(":1235")
 
 }
@@ -64,6 +69,7 @@ func ConnectedKey(c *gin.Context) {
 	query1 := "select idkey,preKey,shareKey,idhostkey from mykey where preKey =? or shareKey =?"
 	keyKey := c.PostForm("key")
 	id := c.PostForm("id")
+	name := c.PostForm("name")
 	row := db.QueryRow(query1, keyKey, keyKey)
 	var shareKey sql.NullString
 	var idkey int
@@ -74,6 +80,7 @@ func ConnectedKey(c *gin.Context) {
 		c.JSON(500, gin.H{"error": "Invalid Key in server. Please try again."})
 		return
 	}
+	//host key
 	if (idhostkey == sql.NullInt16{}) {
 		query2 := "UPDATE mykey SET idhostkey = ? WHERE idkey = ?"
 		row := db.QueryRow(query2, id, idkey)
@@ -81,15 +88,18 @@ func ConnectedKey(c *gin.Context) {
 			c.JSON(500, gin.H{"error": "Error in server. Please try again."})
 			return
 		}
+
 		query3 := "INSERT INTO accounts_has_key (accounts_id, key_idkey) VALUES (?, ?);"
 		row1 := db.QueryRow(query3, id, idkey)
 		if row1.Err() != nil {
 			c.JSON(500, gin.H{"error": "Error in server. Please try again."})
 			return
 		}
+		s.SendReport(idkey, "(Host)", "Enter key")
 		c.JSON(200, gin.H{"status": 200})
 		return
 	}
+	//connect from shareKey
 	if (shareKey != sql.NullString{}) && (shareKey.String == keyKey) {
 		var i int16
 		_, err := fmt.Sscanf(id, "%d", &i)
@@ -107,6 +117,7 @@ func ConnectedKey(c *gin.Context) {
 			c.JSON(500, gin.H{"error": "This key is connected. Please dont put it add"})
 			return
 		}
+		s.SendReport(idkey, "("+name+")", "Join Key *****"+keyKey[5:])
 		c.JSON(200, gin.H{"status": 200})
 		return
 	} else {

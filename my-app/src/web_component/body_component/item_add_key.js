@@ -10,6 +10,7 @@ function Item_add_key(props) {
         const formData = new URLSearchParams();
         formData.append('key', keyConect);
         formData.append('id', props.id);
+        formData.append('name', props.name);
         fetch(`${url_myAPI}/connectKey`, {
             method: 'POST',
             headers: {

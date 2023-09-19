@@ -28,7 +28,7 @@ function Item_key_manger(props) {
                         setErrorMessage("");
                         setbuttonChoose(3);
                         if(!hostkey && (window.confirm("Are you sure to disconnect is key?"))){
-                            fetch(url_myAPI+`/disconectkey?idaccount=${props.idac}&&idkey=${idkey}`)
+                            fetch(url_myAPI+`/disconectkey?idaccount=${props.idac}&&idkey=${idkey}&name=${props.name}`)
                             .then(response => response.json())
                             .then(data=>{
                                 if(data.status){

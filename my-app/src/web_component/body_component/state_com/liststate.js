@@ -5,14 +5,14 @@ function LISTSTATE(props) {
         <div className="list-state-main-contrainer">
 
             <div className="rowtable">
-               {"14-10-2555"}
+               {props.date}
             </div>
             <div className="rowtable">
-                03:46 PM
+                {props.time}
 
             </div>
             <div className="rowtable">
-                sdasdasdasdsad
+                {props.report}
             </div>
 
         </div>

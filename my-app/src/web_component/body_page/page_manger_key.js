@@ -5,9 +5,9 @@ function Page_Manger_key(props){
     let key = props.datakey;
     return(
         <div className="main_page">
-            <Item_add_key id={props.id}/>
+            <Item_add_key id={props.id} name={props.name}/>
             {Object.keys(key).map((keyId, index) => (
-                <Item_key_manger key={index} keyData={key[keyId]} idac={props.id} />
+                <Item_key_manger key={index} keyData={key[keyId]} idac={props.id} name={props.name} />
             ))}
         </div>
     );
