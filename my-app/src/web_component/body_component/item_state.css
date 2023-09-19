@@ -1,0 +1,64 @@
+.item-state-main-contrainer{
+    display: flex;
+    width: 80%;
+    background: #211414;
+    padding: 20px;
+    flex-direction: column;
+    border-radius: 35px;
+    gap: 20px;
+}
+.item-state-main-contrainer .title{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    color: rgb(255, 255, 255);
+    flex-wrap: wrap;
+}
+.title .mixs{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.mixs .st{
+    background-color: red;
+    padding: 10px;
+    border-radius: 10px;
+}
+.mixs .off{
+    background-color: rgb(119, 100, 107);
+    padding: 10px;
+    border-radius: 10px;
+}
+.title .namebar{
+    font-size:large;
+    font-weight: 800;
+    color: aliceblue;
+    padding: 10px;
+    background-color: rgb(114, 92, 175);
+    border-radius: 20px;
+}
+.title input[type=number]{
+    border-radius: 20px;
+    border: 1px solid black;
+    width: 70px;
+    min-height: 40px;
+    transition: all 0.3s ease-in;
+    text-align: center;
+    stroke: #211414;
+}
+.title input[type=number]:focus{
+    width: 100px;
+    
+}
+.title .state{
+    background-color: rgb(52, 49, 59);
+    padding: 10px;
+    border-radius: 10px;
+    font-size: larger;
+    font-weight: 300;
+}
+.colordss{
+    background: rgb(59, 51, 54);
+    color: rgb(161, 211, 255);
+}

@@ -5,6 +5,7 @@ import { useEffect,useState } from "react";
 import Page_HOME from "./body_page/page_web_home";
 import Page_Manger_key from "./body_page/page_manger_key";
 import PAGE_SHARE_KEY from "./body_page/page_share_key";
+import Page_STATE from "./body_page/page_state";
 function Body_Web(props) {
     let menuClick = props.menuClick;
     let menuPageset = props.Pageset;
@@ -25,6 +26,7 @@ function Body_Web(props) {
                 {props.page == 0 && <Page_HOME Click={menuPageset} id={props.id} datakey={key}/>}
                 {props.page == 1 && <Page_Manger_key id={props.id} datakey={key}/>}
                 {props.page == 2 && <PAGE_SHARE_KEY id={props.id} datakey={key}/>}
+                {props.page == 3 && <Page_STATE id={props.id} datakey={key}/>}
             </div>
             }
             { props.id == 0 && <div style={{color:"red"}}>404 no response </div>}

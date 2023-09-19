@@ -6,7 +6,7 @@ function Item_share_key(props){
     let idkey = props.keyData["idkey"];
     let codeKey= props.keyData["codeKey"];
     let share = props.keyData["shareKey"];
-    let newcodekey = codeKey.slice(0, 20) + " ..... " + codeKey.slice(55, 64)
+    let newcodekey = codeKey.slice(0, 5) + " ..... " + codeKey.slice(55, 64)
     let nickname = props.keyData["nickname"];
     const genkey =(e) =>{
         e.preventDefault();
@@ -39,7 +39,8 @@ function Item_share_key(props){
         <div  className="item-share-key-contrainer-main">
             <div className="item-share-key-contrainer-head">
                 <div className="nickname">
-                    {nickname}
+                    {nickname!=="" && nickname}
+                    {nickname==="" && newcodekey}
                 </div>
                 <div className="codekey">
                     {newcodekey}

@@ -12,6 +12,7 @@
 .item-share-key-contrainer-head{
     display: flex;
     flex-direction: row;
+    word-wrap: break-word;
     justify-content: space-between;
     gap: 10px;
     
@@ -29,6 +30,7 @@
     color: wheat;
     font-size:  16px;
     padding: 8px;
+    word-break: break-all;
 }
 .item-share-key-contrainer-head button{
     color: white;

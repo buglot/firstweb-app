@@ -24,6 +24,7 @@
     gap: 10px;
     background: #002A30;
     border-radius: 23px;
+    word-break: break-all;
 
 }
 .item-key-manger-container .groupButton {

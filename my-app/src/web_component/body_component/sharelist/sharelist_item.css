@@ -25,6 +25,7 @@
     flex-direction: row;
     padding: 10px;
     border-right: 2px solid rgb(112, 89, 89);
+    word-break: break-all;
 }
 .buttonlist{
     height: 80%;
