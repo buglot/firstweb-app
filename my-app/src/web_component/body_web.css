@@ -13,6 +13,10 @@
 .body_webMain.full{
     width: 100%;
 }
+.body_webMain.m{
+    width: 100%;
+    height: 90%;
+}
 .body_webMain-n{
     display: flex;
     flex-direction: column;

@@ -39,7 +39,10 @@ func choice(e int) {
 
 func do1(key string) {
 	if key == "" {
-		key = a.GenKey(6, false)
+		var int2 int
+		fmt.Print("N  lenight of key = ")
+		fmt.Scanf("%d", &int2)
+		key = a.GenKey(int2, false)
 	}
 	ck := mysql.QueryRow("select preKey from mykey where preKey = ?", key)
 	if ck.Err() != nil {

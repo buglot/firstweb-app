@@ -3,7 +3,7 @@ import Body_Web from "../web_component/body_web";
 import { useState,useEffect } from "react";
 import { url_myAPI } from "../default/config";
 import { useLocation,useNavigate } from "react-router-dom";
-
+import M_MENU from "./m_menu";
 function M_body(){
     document.title = "SMART KOR";
     const history = useNavigate();
@@ -42,7 +42,8 @@ function M_body(){
     },[setName,setidaccount]);
     return (
         <div className="webbody-main-contrainner">
-            <Body_Web menuClick={menuClick} page={page} Pageset={setPageSelect} id={idaccount}/>
+            <Body_Web menuClick={menuClick} types={"m"} page={page} Pageset={setPageSelect} id={idaccount} name={name}/>
+            <M_MENU page={page} Pageset={setPageSelect} />
         </div>
     );
 }

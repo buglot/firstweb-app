@@ -45,7 +45,7 @@ function Webbody(props){
         <div className="webbody-main-contrainner" style={{background: "#160D0D"}}>
             <Menu_web setClick={setClick} menuClick={menuClick} selectpage={page} setPage={setPageSelect} name={name}/>
             
-            <Body_Web menuClick={menuClick} page={page} Pageset={setPageSelect} id={idaccount} name={name} />
+            <Body_Web menuClick={menuClick} types={"full"} page={page} Pageset={setPageSelect} id={idaccount} name={name} />
         </div>
     );
 }
