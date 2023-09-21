@@ -1,0 +1,7 @@
+.webbody-main-contrainner {
+    display: flex;
+}
+@font-face {
+    font-family: 'peter';
+    src: url('./component/GothamLight.ttf') format('truetype'); /* ตรงนี้จะเป็นตำแหน่งของไฟล์ .ttf */
+}

@@ -1,0 +1,46 @@
+.button-web-menu-container-q {
+    display: flex;
+    padding: 31px;
+    gap: 20px;
+    background: #04061F;
+    transition: background-color 0.1s ease;
+    /* เพิ่มการเปลี่ยนสีพื้นหลังเมาส์เข้า */
+    cursor: pointer;
+}
+
+.button-web-menu-container-q:hover{
+    background: #0B0E30;
+    /* สีพื้นหลังเมื่อเมาส์เข้า */
+}
+
+.button-web-menu-container-q:active  {
+    background: #0B0C18;
+    /* สีพื้นหลังเมื่อกด */
+}
+
+.button-web-menu-container-a {
+    display: flex;
+
+    padding: 31px;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 6px solid #45B1FF;
+    background: #060A39;
+}
+
+.button-web-menu-container-q a{
+    color: #DADADA;
+    font-family: peter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+.button-web-menu-container-a a{
+    color: #DADADA;
+    font-family: peter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}

@@ -1,0 +1,114 @@
+.item-key-manger-container {
+    display: flex;
+    width: 80%;
+    flex-direction: column;
+    padding: 30px;
+    gap: 10px;
+    border-radius: 35px;
+    background: #211414;
+    color: #FFF;
+    font-family: peter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border-radius: 23px;
+    border: 1px solid #000;
+}
+
+.item-key-manger-container .title {
+    display: flex;
+    padding: 15px 0px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    background: #002A30;
+    border-radius: 23px;
+    word-break: break-all;
+
+}
+.item-key-manger-container .groupButton {
+    display: flex;
+    padding: 15px 0px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;  
+}
+
+.item-key-manger-container a {
+
+    font-family: "Tahoma";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    color: transparent;
+    
+    text-shadow: 0 0 6px #9E9E9E;
+    cursor: pointer;
+}
+.item-key-manger-container a:active {
+    color: #9E9E9E;
+    font-family: "Tahoma";
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-shadow: 0 0 0 #9E9E9E;
+}
+.groupButton button {
+    display: flex;
+    height: 45px;
+    padding: 32px 72px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 15px;
+    color: #FFF;
+    text-align: center;
+    font-family: peter;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 900;
+    line-height: normal;
+    border: 1px solid black;
+}
+
+.groupButton button.g {
+    background: #218000;
+}
+
+.groupButton button.g:hover {
+    background: #339412;
+}
+
+.groupButton button.g:active {
+    background: #2a6e13;
+}
+
+.groupButton button.b {
+
+    background: #7200B8;
+}
+
+.groupButton button.b:hover {
+    background: #8304d1;
+}
+
+.groupButton button.b:active {
+    background: #650b9c;
+}
+
+.groupButton button.r {
+
+    background: #9D0000;
+}
+
+.groupButton button.r:hover {
+    background: #aa0303;
+}
+
+.groupButton button.r:active {
+    background: #8f0808;
+}
