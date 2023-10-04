@@ -25,13 +25,9 @@ func main() {
 		fmt.Println("Error connecting to the database:", err)
 		return
 	}
+	defer db.Close()
 	r := gin.Default()
-	r.Use(func(c *gin.Context) {
-		c.Writer.Header().Set("Access-Control-Allow-Origin", "http://192.168.75.1:3000")
-		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE")
-		c.Writer.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
-		c.Next()
-	})
+	r.Use(CORSMiddleware())
 	fmt.Println("Connected to MySQL database!")
 	r.POST("/login", loginHandler)
 	r.GET("/os", osStatus)
@@ -60,9 +56,26 @@ func main() {
 	r.GET("/listUserkey", fuc.Listuser)
 	r.GET("/HistoryKeys", fuc.StateKey)
 	r.GET("/tranferhost", fuc.TranferHost)
-
+	r.GET("/Hardwarcheck", fuc.KeyHardwarcheck)
+	r.GET("/Softcheck", fuc.Keycheck)
+	r.POST("/OpenClose", fuc.DowithDoor)
 	r.Run(":1235")
 
+}
+func CORSMiddleware() gin.HandlerFunc {
+	return func(c *gin.Context) {
+		c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
+		c.Writer.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		c.Writer.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+
+		if c.Request.Method == "OPTIONS" {
+			c.AbortWithStatus(204)
+			return
+		}
+
+		c.Next()
+	}
 }
 func ConnectedKey(c *gin.Context) {
 

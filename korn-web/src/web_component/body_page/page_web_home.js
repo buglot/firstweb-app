@@ -9,7 +9,7 @@ function Page_HOME(props){
             <img src={pe} />
             {Object.keys(key).length === 0 && <Item_none Click={props.Click} />}
             {Object.keys(key).map((keyId, index) => (
-                <ItemHKey key={index} keyData={key[keyId]} />
+                <ItemHKey key={index} keyData={key[keyId]} name={props.name} />
             ))}
         </div>
     );

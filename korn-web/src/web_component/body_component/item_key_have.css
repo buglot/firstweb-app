@@ -51,7 +51,32 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    min-width: 150px;
     border-radius: 64px;
     background: #4F4F4F;
     cursor: pointer;
+}
+.item-key-have-button:hover{
+    background: #7f7f85;
+}
+.item-key-have-button:active{
+    background: #2f2f49;
+}
+
+.item-key-have-button-f {
+    display: flex;
+    padding: 100px 67px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    min-width: 150px;
+    border-radius: 64px;
+    background: #f33a3a;
+    cursor: pointer;
+}
+.item-key-have-button-f:hover{
+    background: #e28181;
+}
+.item-key-have-button-f:active{
+    background: #630303;
 }
