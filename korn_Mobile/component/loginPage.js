@@ -24,7 +24,7 @@ export default function LoginBox({navigation}) {
                         </Text>
                         <TextInput style={style.inputText} placeholder="ป้อนที่รหัสของคุณ" secureTextEntry={true} />
                         <BouncyCheckbox text="จดจำการเข้าระบบไว้" textStyle={{ textDecorationLine: "none" }} />
-                        <Button title="ล็อกอิน" />
+                        <Button title="ล็อกอิน" onPress={(e) => {navigation.navigate('main')}} />
 
 
                     </View>
@@ -38,7 +38,6 @@ const style = StyleSheet.create({
     maincontrainner: {
         alignItems: 'center',
         flex: 1,
-        justifyContent: 'center',
         backgroundColor: "#000",
         gap:30
     },
@@ -46,7 +45,7 @@ const style = StyleSheet.create({
         padding: 10,
         width: "100%",
         borderRadius: 20,
-        gap: 20,
+        
         backgroundColor: "#000"
     },
     textTitle: {
@@ -57,7 +56,7 @@ const style = StyleSheet.create({
     },
     contrainerInnerBox: {
         padding: 10,
-        gap: 10
+        gap: 30
     },
     TextInnerBox: {
         color: "rgb(33, 213, 228)",
@@ -66,7 +65,7 @@ const style = StyleSheet.create({
     inputText: {
         borderRadius: 5,
         width: "100%",
-        backgroundColor: "rgb(255,255,255)",
+        backgroundColor: "rgba(200,230,255,0.9)",
         padding: 5,
         fontSize: 16
     },
