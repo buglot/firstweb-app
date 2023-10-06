@@ -1,5 +1,5 @@
 
-const myIPv4 = "192.168.1.36";
+const myIPv4 = "192.168.1.33";
 const url_myAPI ="http://"+myIPv4+":1235";
 const myIP_REACT = myIPv4+":3000";
 

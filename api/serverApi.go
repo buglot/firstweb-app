@@ -58,7 +58,8 @@ func main() {
 	r.GET("/tranferhost", fuc.TranferHost)
 	r.GET("/Hardwarcheck", fuc.KeyHardwarcheck)
 	r.GET("/Softcheck", fuc.Keycheck)
-	r.POST("/OpenClose", fuc.DowithDoor)
+	r.POST("/OpenClose", fuc.DowithDoorWeb)
+	r.GET("/OpenCloseESP", fuc.DowithDoorESP)
 	r.Run(":1235")
 
 }
