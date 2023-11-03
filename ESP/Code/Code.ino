@@ -13,13 +13,13 @@
 MFRC522 mfrc522(SS_PIN, RST_PIN);
 
 String code = CODEKEY;
-const char* ssid = "C518_2.4G";
-const char* password = "4E9D8900";
+const char* ssid = "Baskungza";
+const char* password = "vobq3309";
 
 String Openoff = "";
 String ChangeOpenoff = "";
 Servo myServo;
-String urlAPI = "http://192.168.1.33:1235/";
+String urlAPI = "http://192.168.1.33:1235";
 long timeset = 0;
 long timeset_1 = 0;
 long timeset_3 = 0;
@@ -75,7 +75,19 @@ void GetWeb(String urSubq) {
 
   http.end();
 }
-
+void PostWeb(String urllink,String postdata){
+  HTTPClient http;
+  http.begin(urlAPI + urllink); 
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+  int httpCode = http.POST(postdata);
+  if (httpCode > 0) {
+    String response = http.getString();
+    Serial.println("HTTP Response: " + response);
+  } else {
+    Serial.println("HTTP POST request failed.");
+  }
+  http.end();
+}
 void PIR() {
   Wire.beginTransmission(MCP23017);
   Wire.write(0x12); // ตำแหน่งที่เก็บค่าขา GPA0-7
@@ -83,7 +95,7 @@ void PIR() {
 
   Wire.requestFrom(MCP23017, 1);
   byte value = Wire.read();
-
+  PostWeb("/espPIR","codeKey="+code+"&value="+String((value >> 7) & 1, BIN));
   // แสดงค่าที่อ่าน
   Serial.println("ค่าที่อ่านจาก GPA7: " + String((value ) & 10000000, BIN));
   Serial.println("ค่าที่อ่านจาก GPA7: " + String((value >> 7) & 1, BIN));
@@ -91,11 +103,10 @@ void PIR() {
 }
 void RFID() {
   if (mfrc522.PICC_IsNewCardPresent() && mfrc522.PICC_ReadCardSerial()) {
-    Serial.println();
     if (!Openoff.compareTo("1")) {
-      GetWeb("OpenCloseESP?key=" + code + "&c=0&who=CardKey");
+      PostWeb("/espOpenClose","codeKey="+code+"&type=0");
     } else {
-      GetWeb("OpenCloseESP?key=" + code + "&c=1&who=CardKey");
+      PostWeb("/espOpenClose","codeKey="+code+"&type=1");
     }
     Serial.println(String(mfrc522.uid.uidByte[1],10));
     mfrc522.PICC_HaltA();
@@ -110,7 +121,7 @@ void loop() {
   }
   if (millis() - timeset_1 > 1000) {
     timeset_1 = millis();
-    GetWeb("Hardwarcheck?key=" + code);
+    GetWeb("/espCheck?codeKey=" + code);
   }
 
   if (millis() - timeset_3 > 3000) {
@@ -122,7 +133,7 @@ void loop() {
     commend.trim();
     if (commend.charAt(0) == 'u') {
       commend.replace("u:", "");
-      urlAPI = "http://" + commend + "/";
+      urlAPI = "http://" + commend;
     }
   }
 }
